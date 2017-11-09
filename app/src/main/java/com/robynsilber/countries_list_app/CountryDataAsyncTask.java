@@ -4,6 +4,10 @@ package com.robynsilber.countries_list_app;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,7 +34,8 @@ public class CountryDataAsyncTask extends AsyncTask<Void, Void, Country[]> {
     protected Country[] doInBackground(Void... voids) {
 
         final String BASE_URL = "https://restcountries.eu/rest/v2/all";
-
+//        final String BASE_URL = "http://www.geognos.com/api/en/countries/info/all.json";
+//        final String BASE_URL = "http://country.io/names.json";
         String jsonData = null; // stores the retrieved json data
 
         HttpURLConnection httpURLConnection = null;
@@ -67,6 +72,7 @@ public class CountryDataAsyncTask extends AsyncTask<Void, Void, Country[]> {
             // initialize bufferedReader and stringBuffer
             bufferedReader = new BufferedReader(inputStreamReader);
             StringBuffer stringBuffer = new StringBuffer();
+
 
             // Decalare variables for parsing, reading data line by line (using the bufferedReader)
             String line;
@@ -107,7 +113,38 @@ public class CountryDataAsyncTask extends AsyncTask<Void, Void, Country[]> {
             }
         }
 
+        try{
+            Country[] countries = formatJsonArray(jsonData);
+            return countries;
 
-        return new Country[0];
+        } catch (JSONException e){
+            Log.e(LOG_TAG, "Error: failed to format JSON data: ", e);
+        }
+
+
+        return null; // fail
     }
+
+    private Country[] formatJsonArray(String jsonData) throws JSONException {
+
+        // Tag for JSON data extraction
+        final String NAME = "name";
+
+        JSONArray jsonArr = new JSONArray(jsonData);
+        Log.d(LOG_TAG,Integer.toString(jsonArr.length()));
+
+        Country[] countries = new Country[jsonArr.length()];
+
+        for(int i=0; i<jsonArr.length(); i++){
+            JSONObject jsonObject = jsonArr.getJSONObject(i);
+            Log.d(LOG_TAG, jsonObject.getString(NAME));
+            countries[i] = new Country(jsonObject.getString(NAME));
+        }
+
+
+
+
+        return countries;
+    }
+
 }

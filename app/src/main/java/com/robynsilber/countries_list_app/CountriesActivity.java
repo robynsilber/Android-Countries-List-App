@@ -1,12 +1,14 @@
 package com.robynsilber.countries_list_app;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.widget.ListView;
 
 public class CountriesActivity extends AppCompatActivity implements CountryDataAsyncTask.IAsyncTaskResponder {
 
     private Country[] mCountryModel;
     private CountryDataAsyncTask mCountryDataAsyncTask;
+    private ListView mListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +27,12 @@ public class CountriesActivity extends AppCompatActivity implements CountryDataA
 
     @Override
     public void asyncTaskFinished(Country[] countries) {
+        mCountryModel = new Country[countries.length];
+        int i=0;
+        for(Country c : countries){
+            mCountryModel[i] = c;
+            i++;
+        }
 
     }
 }
