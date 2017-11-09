@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Countries-List-App</string>
+    <string name="get_all_countries_label">Get all countries</string>
+    <string name="start_btn">Start</string>
 </resources>
