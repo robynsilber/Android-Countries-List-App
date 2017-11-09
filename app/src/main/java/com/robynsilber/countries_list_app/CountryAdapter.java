@@ -35,7 +35,7 @@ public class CountryAdapter extends BaseAdapter {
     public long getItemId(int i) {
         return 0;  // not implementing this at the moment
     }
-    
+
     /* Method is called for each item in the list. This method is called when
      * each view is being prepared to be shown on the screen. */
     @Override
