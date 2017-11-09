@@ -14,6 +14,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getAllTheCountries(View view) {
-        Intent intent = new Intent();
+        Intent intent = new Intent(this, CountriesActivity.class);
+        /* Consider executing AsyncTask here */
+        startActivity(intent);
     }
 }
