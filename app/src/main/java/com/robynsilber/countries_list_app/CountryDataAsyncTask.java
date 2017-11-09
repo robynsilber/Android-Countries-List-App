@@ -1,7 +1,6 @@
 package com.robynsilber.countries_list_app;
 
 
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -30,7 +29,7 @@ public class CountryDataAsyncTask extends AsyncTask<Void, Void, Country[]> {
     @Override
     protected Country[] doInBackground(Void... voids) {
 
-        final String BASE_URL = "https://restcountries.eu/rest/v2/all?fields=name";
+        final String BASE_URL = "https://restcountries.eu/rest/v2/all";
 
         String jsonData = null; // stores the retrieved json data
 
@@ -38,11 +37,11 @@ public class CountryDataAsyncTask extends AsyncTask<Void, Void, Country[]> {
         BufferedReader bufferedReader = null;
 
         try{
-            Uri uri = Uri.parse(BASE_URL).buildUpon().build();
+//            Uri uri = Uri.parse(BASE_URL).buildUpon().build();
 
             // Declare the URL, using the uri String as arg
-            URL url = new URL(uri.toString()); // requires an IOException as the catch block param
-//            URL url = new URL(BASE_URL);
+//            URL url = new URL(uri.toString()); // requires an IOException as the catch block param
+            URL url = new URL(BASE_URL);
             // Begin query to server by opening httpURLConnection
             httpURLConnection = (HttpURLConnection) url.openConnection();
 
