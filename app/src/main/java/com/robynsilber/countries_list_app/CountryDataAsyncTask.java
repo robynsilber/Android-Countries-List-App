@@ -115,6 +115,7 @@ public class CountryDataAsyncTask extends AsyncTask<Void, Void, Country[]> {
 
         try{
             Country[] countries = formatJsonArray(jsonData);
+            Log.d(LOG_TAG, "returned countries");
             return countries;
 
         } catch (JSONException e){
@@ -137,14 +138,19 @@ public class CountryDataAsyncTask extends AsyncTask<Void, Void, Country[]> {
 
         for(int i=0; i<jsonArr.length(); i++){
             JSONObject jsonObject = jsonArr.getJSONObject(i);
-            Log.d(LOG_TAG, jsonObject.getString(NAME));
+//            Log.d(LOG_TAG, jsonObject.getString(NAME));
             countries[i] = new Country(jsonObject.getString(NAME));
         }
 
-
-
-
         return countries;
+    }
+
+
+    @Override
+    protected void onPostExecute(Country[] data) {
+        if (data != null) {
+            mIAsyncTaskListener.asyncTaskFinished(data);
+        }
     }
 
 }

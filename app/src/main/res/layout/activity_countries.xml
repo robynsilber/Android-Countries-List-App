@@ -7,9 +7,18 @@
     android:layout_margin="32dp"
     tools:context="com.robynsilber.countries_list_app.CountriesActivity">
 
+    <SearchView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:iconifiedByDefault="false"
+        android:queryHint="Country name..."
+        android:layout_marginBottom="16dp"
+        android:id="@+id/search_view"/>
+
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/search_view"
         android:id="@+id/list_view"/>
 
 </RelativeLayout>
