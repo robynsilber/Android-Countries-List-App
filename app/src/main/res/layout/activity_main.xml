@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="64dp"
+        android:textAppearance="?android:textAppearanceLarge"
         android:text="@string/get_all_countries_label"
         android:id="@+id/get_all_countries_textview"/>
 

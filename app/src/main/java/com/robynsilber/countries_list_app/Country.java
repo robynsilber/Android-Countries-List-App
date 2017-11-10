@@ -1,7 +1,11 @@
 package com.robynsilber.countries_list_app;
 
 
-public class Country {
+import android.support.annotation.NonNull;
+
+import java.util.Comparator;
+
+public class Country implements Comparable<Country> {
 
     private String mName;
 
@@ -18,16 +22,19 @@ public class Country {
         mName = name;
     }
 
-//    public static ArrayList<Country> getFilteredCountries(ArrayList<String> arrayList, String s){
-//        ArrayList<Country> countries = new ArrayList<Country>();
-//        for(String c : arrayList){
-//            if(c.startsWith(s)){
-//                countries.add(new Country(c));
-//            }
-//        }
-//
-//        return countries;
-//    }
+
+    @Override
+    public int compareTo(@NonNull Country country) {
+        return this.mName.compareTo(country.getName());
+    }
+
+    public static Comparator<Country> CountryComparator
+            = new Comparator<Country>() {
+        @Override
+        public int compare(Country country1, Country country2) {
+            return country1.getName().compareTo(country2.getName());
+        }
+    };
 }
 
 
