@@ -7,18 +7,42 @@
     android:layout_margin="32dp"
     tools:context="com.robynsilber.countries_list_app.CountriesActivity">
 
-    <SearchView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:iconifiedByDefault="false"
-        android:queryHint="Country name..."
-        android:layout_marginBottom="16dp"
-        android:id="@+id/search_view"/>
-
-    <ListView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/search_view"
+        android:hint="@string/type_a_country_name_label"
+        android:layout_marginBottom="64dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginEnd="8dp"
+        android:id="@+id/search_edittext"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/search_btn_label"
+        android:layout_toRightOf="@+id/search_edittext"
+        android:layout_toEndOf="@+id/search_edittext"
+        android:layout_alignBottom="@id/search_edittext"
+        android:onClick="filterCountriesList"
+        android:id="@+id/search_btn"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/clear_btn_label"
+        android:layout_toRightOf="@id/search_btn"
+        android:layout_toEndOf="@id/search_btn"
+        android:layout_alignBottom="@id/search_btn"
+        android:visibility="invisible"
+        android:onClick="clearFilteredCountriesList"
+        android:id="@+id/clear_btn"/>
+
+    <ListView
+        android:layout_below="@+id/search_edittext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/list_view"/>
 
 </RelativeLayout>

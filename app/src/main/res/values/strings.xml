@@ -2,4 +2,7 @@
     <string name="app_name">Countries-List-App</string>
     <string name="get_all_countries_label">Get all countries</string>
     <string name="start_btn">Start</string>
+    <string name="type_a_country_name_label">Type a country name...</string>
+    <string name="search_btn_label">search</string>
+    <string name="clear_btn_label">clear</string>
 </resources>

@@ -32,7 +32,7 @@ public class CountryDataAsyncTask extends AsyncTask<Void, Void, Country[]> {
 
     @Override
     protected Country[] doInBackground(Void... voids) {
-
+        Log.d(LOG_TAG, "line 35");
         final String BASE_URL = "https://restcountries.eu/rest/v2/all";
 //        final String BASE_URL = "http://www.geognos.com/api/en/countries/info/all.json";
 //        final String BASE_URL = "http://country.io/names.json";
@@ -42,10 +42,8 @@ public class CountryDataAsyncTask extends AsyncTask<Void, Void, Country[]> {
         BufferedReader bufferedReader = null;
 
         try{
-//            Uri uri = Uri.parse(BASE_URL).buildUpon().build();
 
-            // Declare the URL, using the uri String as arg
-//            URL url = new URL(uri.toString()); // requires an IOException as the catch block param
+            // Declare the URL
             URL url = new URL(BASE_URL);
             // Begin query to server by opening httpURLConnection
             httpURLConnection = (HttpURLConnection) url.openConnection();
@@ -53,19 +51,19 @@ public class CountryDataAsyncTask extends AsyncTask<Void, Void, Country[]> {
             // Set the request method of the httpURLConnection to "GET"
             httpURLConnection.setRequestMethod("GET");
 
-
+            Log.d(LOG_TAG, "line 54");
             // Connect to server
             httpURLConnection.connect();
-
+            Log.d(LOG_TAG, "line 57");
             // Next step: Retrieve the country data
             // Proceed by getting the input stream returned from the query
             InputStream inputStream = httpURLConnection.getInputStream();
-
+            Log.d(LOG_TAG, "line 61");
             if(inputStream == null){ // Failed to retrieve data
                 Log.d(LOG_TAG, "Failed to retrieve country data");
                 return null; // no data retrieved from server
             }
-
+            Log.d(LOG_TAG, "line 66");
             // Parse the retrieved data
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
 
@@ -73,7 +71,7 @@ public class CountryDataAsyncTask extends AsyncTask<Void, Void, Country[]> {
             bufferedReader = new BufferedReader(inputStreamReader);
             StringBuffer stringBuffer = new StringBuffer();
 
-
+            Log.d(LOG_TAG, "line 74");
             // Decalare variables for parsing, reading data line by line (using the bufferedReader)
             String line;
             final String NEW_LINE = "\n";
@@ -84,10 +82,14 @@ public class CountryDataAsyncTask extends AsyncTask<Void, Void, Country[]> {
                 stringBuffer.append(line + NEW_LINE);
             } // all the data has been initially parsed and appended
 
+            Log.d(LOG_TAG, "line 85");
+
             if(stringBuffer.length() == 0){ // nothing to parse
                 Log.d(LOG_TAG, "No data to parse");
                 return null;
             }
+
+            Log.d(LOG_TAG, "line 92");
 
             // Successful retrieval of JSON country data
             jsonData = stringBuffer.toString();

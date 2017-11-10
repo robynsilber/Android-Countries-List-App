@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.util.List;
+
 
 public class CountryAdapter extends BaseAdapter {
 
@@ -18,6 +20,14 @@ public class CountryAdapter extends BaseAdapter {
         mCountryArray = new Country[countries.length];
         for(int i=0; i<countries.length; i++){
             mCountryArray[i] = countries[i];
+        }
+    }
+
+    public CountryAdapter(Context context, List<Country> countries){
+        mContext = context;
+        mCountryArray = new Country[countries.size()];
+        for(int i=0; i<countries.size(); i++){
+            mCountryArray[i] = countries.get(i);
         }
     }
 

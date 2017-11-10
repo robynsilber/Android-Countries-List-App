@@ -17,6 +17,17 @@ public class Country {
     public void setName(String name) {
         mName = name;
     }
+
+//    public static ArrayList<Country> getFilteredCountries(ArrayList<String> arrayList, String s){
+//        ArrayList<Country> countries = new ArrayList<Country>();
+//        for(String c : arrayList){
+//            if(c.startsWith(s)){
+//                countries.add(new Country(c));
+//            }
+//        }
+//
+//        return countries;
+//    }
 }
 
 
